@@ -1,15 +1,20 @@
 import requests
+import unittest
 
-def test_character_endpoint(name):
 
-    # TRY using this one:
-    # https: // realpython.com / python - testing /  # testing-for-web-frameworks-like-django-and-flask
+class TestCharacterEndpoint(unittest.TestCase):
+    def setUp(self):
+        self.base_url = 'https://rickandmortyapi.com/api'
 
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-    baseUrl = 'rickandmortyapi.com/api';
-    character_endpoint = f'https://{baseUrl}/character'
-    response = requests.get(character_endpoint)
-    print(response.json())
+    def test_character_endpoint(self):
+        response = requests.get(f"{self.base_url}/character")
+        self.assertEqual(response.status_code, 200)
+        response_body = response.json()
+        self.assertGreater(len(response_body['results']), 0)
+
+        response = requests.get(f"{self.base_url}/character/1")
+        print(response.json())
+
 
 if __name__ == '__main__':
-    test_character_endpoint('PyCharm')
+    unittest.main()

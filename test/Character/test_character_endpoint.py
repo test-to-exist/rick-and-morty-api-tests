@@ -9,7 +9,7 @@ class TestCharacterEndpoint(unittest.TestCase):
     def setUp(self):
         self.base_url = 'https://rickandmortyapi.com/api'
 
-    # POSITIVE character endpoint tests
+    # POSITIVE character endpoint test
     def test_character_options_returns_status_204(self):
         response = requests.options(f"{self.base_url}/character")
         self.assertEqual(response.status_code, 204)
@@ -37,7 +37,7 @@ class TestCharacterEndpoint(unittest.TestCase):
         response_body = response.json()
         self.assertGreater(len(response_body), 0)
 
-    # NEGATIVE character endpoint tests
+    # NEGATIVE character endpoint test
     def test_character_should_return_error_for_an_invalid_param(self):
         response = requests.get(f"{self.base_url}/character/a")
         response_body = response.json()

@@ -15,6 +15,7 @@ class TestLocationEndpoint(unittest.TestCase):
         response = requests.get(f"{self.base_url}/location/1")
         self.assertEqual(response.status_code, 200)
         validate(response.json(), schema=location_schema)
+
     def test_location(self):
         response = requests.get(f"{self.base_url}/location")
         self.assertEqual(response.status_code, 200)

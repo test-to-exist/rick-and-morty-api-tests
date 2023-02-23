@@ -20,7 +20,7 @@ class TestCharacterEndpoint(unittest.TestCase):
         response_body = response.json()
         self.assertGreater(len(response_body['results']), 0)
 
-    def test_character_should_return_character_with_valid_schema(self):
+    def test_character_should_return_response_with_valid_schema(self):
         response = requests.get(f"{self.base_url}/character/1")
         self.assertEqual(response.status_code, 200)
         validate(response.json(), schema=character_schema)

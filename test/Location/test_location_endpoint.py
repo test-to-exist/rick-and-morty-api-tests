@@ -22,15 +22,6 @@ class TestLocationEndpoint(unittest.TestCase):
         response_body = response.json()
         self.assertGreater(len(response_body['results']), 0)
 
-        # response = requests.get(f"{self.base_url}/character/1")
-        # print(response.json())
-        #
-        # response = requests.get(f"{self.base_url}/character/1000")
-        # print(response.json())
-        #
-        # response = requests.get(f"{self.base_url}/character/0")
-        print(response.json())
-
         response = requests.get(f"{self.base_url}/location/0")
         # print(0)
         # print(response.json())
@@ -58,4 +49,3 @@ class TestLocationEndpoint(unittest.TestCase):
         response = requests.get(f"{self.base_url}/location/3")
         # print('3')
         # print(response.json())
-        # response = requests.get(f"{self.base_url}/character/a")

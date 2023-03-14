@@ -1,13 +1,19 @@
+import os
 import unittest
 
 import requests
 from jsonschema import validate
 from schemas.character_schema import character_schema
 
+import configparser
+
+config = configparser.ConfigParser()
+config.read("../../config.ini")
+
 
 class TestCharacterEndpoint(unittest.TestCase):
     def setUp(self):
-        self.base_url = 'https://rickandmortyapi.com/api'
+        self.base_url = config['APP']['BASEURL']
 
     # POSITIVE character endpoint test
     def test_character_options_returns_status_204(self):

@@ -1,3 +1,5 @@
+import configparser
+import os
 import unittest
 
 import requests
@@ -9,7 +11,10 @@ from schemas.location_schema import location_schema
 class TestLocationEndpoint(unittest.TestCase):
 
     def setUp(self):
-        self.base_url = 'https://rickandmortyapi.com/api'
+        app_config = configparser.ConfigParser()
+        app_config.read("./../../config/config.ini")
+        os.environ['BASEURL'] = app_config['APP']['BASEURL']
+        self.base_url = os.environ.get('BASEURL')
 
     def test_location_should_return_response_with_valid_schema(self):
         response = requests.get(f"{self.base_url}/location/1")

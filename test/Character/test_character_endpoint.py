@@ -1,19 +1,19 @@
+import configparser
 import os
 import unittest
 
 import requests
 from jsonschema import validate
+
 from schemas.character_schema import character_schema
-
-import configparser
-
-config = configparser.ConfigParser()
-config.read("../../config.ini")
 
 
 class TestCharacterEndpoint(unittest.TestCase):
     def setUp(self):
-        self.base_url = config['APP']['BASEURL']
+        app_config = configparser.ConfigParser()
+        app_config.read("./../../config/config.ini")
+        os.environ['BASEURL'] = app_config['APP']['BASEURL']
+        self.base_url = os.environ.get('BASEURL')
 
     # POSITIVE character endpoint test
     def test_character_options_returns_status_204(self):

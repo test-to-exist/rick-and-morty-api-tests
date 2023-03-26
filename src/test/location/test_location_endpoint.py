@@ -1,19 +1,17 @@
-import configparser
 import os
 import unittest
 
 import requests
 from jsonschema.validators import validate
 
-from schemas.location_schema import location_schema
+from src.config.config_to_env import load_config
+from src.schemas.location_schema import location_schema
 
 
 class TestLocationEndpoint(unittest.TestCase):
 
     def setUp(self):
-        app_config = configparser.ConfigParser()
-        app_config.read("./../../config/config.ini")
-        os.environ['BASEURL'] = app_config['APP']['BASEURL']
+        load_config()
         self.base_url = os.environ.get('BASEURL')
 
     def test_location_should_return_response_with_valid_schema(self):

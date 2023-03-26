@@ -1,18 +1,16 @@
-import configparser
 import os
 import unittest
 
 import requests
 from jsonschema import validate
 
-from schemas.character_schema import character_schema
+from src.config.config_to_env import load_config
+from src.schemas.character_schema import character_schema
 
 
 class TestCharacterEndpoint(unittest.TestCase):
     def setUp(self):
-        app_config = configparser.ConfigParser()
-        app_config.read("./../../config/config.ini")
-        os.environ['BASEURL'] = app_config['APP']['BASEURL']
+        load_config()
         self.base_url = os.environ.get('BASEURL')
 
     # POSITIVE character endpoint test
@@ -59,3 +57,16 @@ class TestCharacterEndpoint(unittest.TestCase):
         response_body = response.json()
         self.assertEqual('error' in response_body, True)
         self.assertEqual(response.status_code, 404)
+
+    def test_character_list_should_be_filtered_by_name(self):
+        name_param = 'Rick'
+        response = requests.get(f"{self.base_url}/character?name={name_param}")
+        response_body = response.json()
+        for name in map(lambda x: x['name'], response_body['results']):
+            self.assertTrue(name_param in name)
+
+
+        # status: filter
+        # species: filter
+        # type: filter
+        # gender: filter

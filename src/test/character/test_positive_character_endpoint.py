@@ -8,12 +8,11 @@ from src.config.config_to_env import load_config
 from src.schemas.character_schema import character_schema
 
 
-class TestCharacterEndpoint(unittest.TestCase):
+class TestPositiveCharacterEndpoint(unittest.TestCase):
     def setUp(self):
         load_config()
         self.base_url = os.environ.get('BASEURL')
 
-    # POSITIVE character endpoint test
     def test_character_options_returns_status_204(self):
         response = requests.options(f"{self.base_url}/character")
         self.assertEqual(response.status_code, 204)
@@ -41,23 +40,6 @@ class TestCharacterEndpoint(unittest.TestCase):
         response_body = response.json()
         self.assertGreater(len(response_body), 0)
 
-    # NEGATIVE character endpoint test
-    def test_character_should_return_error_for_an_invalid_param(self):
-        response = requests.get(f"{self.base_url}/character/a")
-        response_body = response.json()
-        self.assertEqual('error' in response_body, True)
-        self.assertEqual(response.status_code, 500)
-
-    def test_character_endpoint_returns_not_found_error_for_character_out_of_range(self):
-        response = requests.get(f"{self.base_url}/character/1000000")
-        response_body = response.json()
-        self.assertEqual('error' in response_body, True)
-        self.assertEqual(response.status_code, 404)
-        response = requests.get(f"{self.base_url}/character/0")
-        response_body = response.json()
-        self.assertEqual('error' in response_body, True)
-        self.assertEqual(response.status_code, 404)
-
     def test_character_list_should_be_filtered_by_name(self):
         name_param = 'Rick'
         response = requests.get(f"{self.base_url}/character?name={name_param}")
@@ -65,8 +47,3 @@ class TestCharacterEndpoint(unittest.TestCase):
         for name in map(lambda x: x['name'], response_body['results']):
             self.assertTrue(name_param in name)
 
-
-        # status: filter
-        # species: filter
-        # type: filter
-        # gender: filter

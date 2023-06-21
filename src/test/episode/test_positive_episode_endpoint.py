@@ -8,7 +8,7 @@ from src.config.config_to_env import load_config
 from src.schemas.episode_schema import episode_schema
 
 
-class TestEpisodeEndpoint(unittest.TestCase):
+class TestPositiveEpisodeEndpoint(unittest.TestCase):
 
     def setUp(self):
         load_config()

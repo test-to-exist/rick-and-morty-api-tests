@@ -8,7 +8,7 @@ from src.config.config_to_env import load_config
 from src.schemas.location_schema import location_schema
 
 
-class TestLocationEndpoint(unittest.TestCase):
+class TestPositiveLocationEndpoint(unittest.TestCase):
 
     def setUp(self):
         load_config()

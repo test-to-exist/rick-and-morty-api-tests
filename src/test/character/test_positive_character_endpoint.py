@@ -18,6 +18,7 @@ class TestPositiveCharacterEndpoint(unittest.TestCase):
         load_config()
         self.base_url = os.environ.get('BASEURL')
 
+    # Is that alright that the endpoint returns 204 instead of 200?
     def test_character_options_returns_status_204(self):
         response = requests.options(f"{self.base_url}/character")
         self.assertEqual(response.status_code, 204)
@@ -55,7 +56,7 @@ class TestPositiveCharacterEndpoint(unittest.TestCase):
         for name in map(lambda x: x['name'], response_body['results']):
             self.assertTrue(name_param in name)
 
-    def test_character_list_should_be_filtered_by(self):
+    def test_character_list_can_be_filtered(self):
         for filter_name, filter_val in filter_param_list:
             with self.subTest(filter_name=filter_name, filter_val=filter_val):
                 response = requests.get(f"{self.base_url}/character?{filter_name}={filter_val}")

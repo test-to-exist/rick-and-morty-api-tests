@@ -20,9 +20,9 @@ class TestPositiveEpisodeEndpoint(unittest.TestCase):
         self.base_url = os.environ.get('BASEURL')
         self.endpoint = 'episode'
 
-    def test_episode_should_return_200(self):
-        response = requests.get(f"{self.base_url}/{self.endpoint}")
-        self.assertEqual(response.status_code, 200)
+    def test_episode_options_returns_status_204(self):
+        response = requests.options(f"{self.base_url}/{self.endpoint}")
+        self.assertEqual(response.status_code, 204)
 
     def test_episode_should_return_list(self):
         response = requests.get(f"{self.base_url}/{self.endpoint}")
@@ -46,9 +46,10 @@ class TestPositiveEpisodeEndpoint(unittest.TestCase):
         self.assertGreater(len(response_body), 0)
 
     def test_episode_list_can_be_filtered(self):
+        print("\n")
         for filter_name, filter_val in filter_param_list:
             with self.subTest(filter_name=filter_name, filter_val=filter_val):
-                print(f"Character list filtering Subtest - Filtering by: \"{filter_name}\" with value: \"{filter_val}\"")
+                print(f"Episode list filtering Subtest - Filtering by: \"{filter_name}\" with value: \"{filter_val}\"")
                 response = requests.get(f"{self.base_url}/{self.endpoint}?{filter_name}={filter_val}")
                 self.assertEqual(response.status_code, 200)
                 response_body = response.json()

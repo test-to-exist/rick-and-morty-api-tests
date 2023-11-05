@@ -50,6 +50,7 @@ class TestPositiveCharacterEndpoint(unittest.TestCase):
         self.assertGreater(len(response_body), 0)
 
     def test_character_list_can_be_filtered(self):
+        print("\n")
         for filter_name, filter_val in filter_param_list:
             with self.subTest(filter_name=filter_name, filter_val=filter_val):
                 print(f"Character list filtering Subtest - Filtering by: \"{filter_name}\" with value: \"{filter_val}\"")

@@ -13,9 +13,6 @@ class TestNegativeCharacterEndpoint(unittest.TestCase):
         self.endpoint = 'character'
 
     def test_character_should_return_error_for_an_invalid_param(self):
-        """
-        Character endpoint should return an error for an invalid param
-        """
         response = requests.get(f"{self.base_url}/{self.endpoint}/a")
         response_body = response.json()
         self.assertEqual('error' in response_body, True)

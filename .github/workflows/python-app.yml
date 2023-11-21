@@ -34,5 +34,6 @@ jobs:
         echo "BASEURL=https://rickandmortyapi.com/api" >> src/config/config.ini
     - name: Run the tests
       run: |
-         python -m ./src/main.py
+         cd ./src
+         python main.py
 

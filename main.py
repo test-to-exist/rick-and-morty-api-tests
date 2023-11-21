@@ -10,7 +10,7 @@ from src.utils import transform_report
 if __name__ == '__main__':
     load_config()
     loader = unittest.TestLoader()
-    start_dir = 'test'
+    start_dir = 'src/test'
     suite = loader.discover(start_dir)
 
     out = io.BytesIO()
@@ -20,8 +20,8 @@ if __name__ == '__main__':
     runner = xmlrunner.XMLTestRunner(output=out)
     runner.run(suite)
 
-    with open('./test-results/TEST-report.xml', 'wb') as report:
+    with open('src/test-results/TEST-report.xml', 'wb') as report:
         report.write(transform(out.getvalue()))
 
-    transform_report('./test-results/TEST-report.xml')
+    transform_report('src/test-results/TEST-report.xml')
 

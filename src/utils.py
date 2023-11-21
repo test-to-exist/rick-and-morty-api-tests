@@ -12,8 +12,8 @@ def split_string_on_uppercase(input_string):
     return result
 
 
-def transform_report(filename):
-    tree = ET.parse(filename)
+def transform_report(filepath):
+    tree = ET.parse(filepath)
     root = tree.getroot()
 
     for testcase in root.iter('testcase'):
@@ -26,4 +26,4 @@ def transform_report(filename):
     for testsuite in root.iter('testsuite'):
         testsuite.attrib['name'] = " ".join(
             split_string_on_uppercase(testsuite.attrib['name'].split(".")[2].split("-")[0]))
-        tree.write('TEST-report.xml')
+        tree.write(filepath)

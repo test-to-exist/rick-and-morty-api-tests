@@ -20,8 +20,8 @@ if __name__ == '__main__':
     runner = xmlrunner.XMLTestRunner(output=out)
     runner.run(suite)
 
-    with open('TEST-report.xml', 'wb') as report:
+    with open('./test-results/TEST-report.xml', 'wb') as report:
         report.write(transform(out.getvalue()))
 
-    transform_report('TEST-report.xml')
+    transform_report('./test-results/TEST-report.xml')
 

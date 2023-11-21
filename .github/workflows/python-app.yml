@@ -27,6 +27,11 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f ./src/requirements.txt ]; then pip install -r ./src/requirements.txt; fi
+    - name: Prepare config file 
+      run: |
+        touch src/config/config.ini
+        echo "[APP]" >> src/config/config.ini
+        echo "BASEURL=https://rickandmortyapi.com/api" >> src/config/config.ini
     - name: Run the tests
       run: |
          python -m unittest discover 

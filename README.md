@@ -28,3 +28,9 @@ Run all tests
 ```commandline
  python -m unittest discover 
 ```
+
+Run all tests and generate JUnit xml report
+
+```commandline
+python main.py
+```

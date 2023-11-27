@@ -8,6 +8,7 @@ from src.config.config_to_env import load_config
 from src.utils import transform_report
 
 if __name__ == '__main__':
+    # Test
     load_config()
     loader = unittest.TestLoader()
     start_dir = 'src/test'

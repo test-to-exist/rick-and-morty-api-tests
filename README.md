@@ -59,5 +59,5 @@ python3 main.py
 
 Here is the page with the report from the last run
 
-https://test-to-exist.github.io/rick-and-morty-api-tests/22/#
+https://test-to-exist.github.io/rick-and-morty-api-tests/
 

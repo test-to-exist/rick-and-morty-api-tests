@@ -4,12 +4,20 @@ Create and activate virtual env
 
 ```commandline
 mkdir .venv
-python3 -m venv ./.venv/rick-and-morty
+python -m venv ./.venv/rick-and-morty
 chmod +x ./.venv/rick-and-morty/bin/activate
 ./.venv/rick-and-morty/bin/activate
 ```
+Have in mind hat sometimes in 
 
-Install the requirements 
+Install the requirements windows, this line:
+```commandline
+python -m venv ./.venv/rick-and-morty
+```
+Should be run with python3 instead of python:
+```commandline
+python3 -m venv ./.venv/rick-and-morty
+```
 
 ```commandline
 pip install -r ./src/requirements.txt

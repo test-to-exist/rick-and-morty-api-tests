@@ -15,12 +15,13 @@ python -m venv ./.venv/rick-and-morty
 ./.venv/rick-and-morty/bin/Activate.ps1
 ```
 
-# Install the requirements with this line:
+# Install the requirements
+
 ```commandline
 pip install -r ./src/requirements.txt
 ```
 
-Add config file and fill section for baser url
+# Add config file and fill section for baser url
 
 On linux
 ```commandline

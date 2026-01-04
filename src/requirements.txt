@@ -1,4 +1,4 @@
-requests==2.32.0
+requests==2.32.4
 flake8
 jsonschema~=4.17.3
 unittest-xml-reporting
